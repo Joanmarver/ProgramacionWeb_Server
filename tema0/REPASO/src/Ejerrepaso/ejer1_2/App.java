@@ -1,4 +1,4 @@
-package Ejerrepaso.ejer1;
+package Ejerrepaso.ejer1_2;
 
 import java.util.ArrayList;
 import java.util.Scanner;

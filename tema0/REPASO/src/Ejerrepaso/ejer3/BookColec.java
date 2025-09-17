@@ -1,10 +1,10 @@
 package Ejerrepaso.ejer3;
 
-import Ejerrepaso.ejer1.Book;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class BookColec{
     // ¿Qué tipo de colección es la más adecuada para almacenar los libros?
@@ -57,7 +57,7 @@ public class BookColec{
 
     }
 
-    public static void fautores (ArrayList <Bookf> books){
+    public static void fAutores (ArrayList <Bookf> books){
         List <String> libros = books.stream()
                 .map(Bookf::author)
                 .distinct()
@@ -66,9 +66,27 @@ public class BookColec{
                 .forEach(System.out::println);
 
     }
-    public static void fAutoresconmasde1libro(ArrayList <Bookf> books){
-        List <String> liibros = books.stream().collect()
-                .
+    public static void fAutoresConMasDe1libro(ArrayList <Bookf> books){
+        Map<String , Long> conteo = books.stream()
+                .collect(Collectors.groupingBy(Bookf::author, Collectors.counting()));
+        conteo.entrySet().stream()
+                .filter(entry -> entry.getValue()>1)
+                .map(Map.Entry::getKey)
+                .forEach(System.out::println);
     }
+    public static void fLibroMayorPaginas(ArrayList <Bookf> books){
+        books.sort(Comparator.comparing(Bookf::pages).reversed());
+        System.out.println(books.get(0).title());
+    }
+    public static void fColeccionDeLibors(ArrayList <Bookf> books){
+        List<String>titulos = books.stream()
+                .map(Bookf::title)
+                .toList();
+        for (String titulo: titulos){
+            System.out.println(titulo);
+        }
+    }
+
+
 
 }
