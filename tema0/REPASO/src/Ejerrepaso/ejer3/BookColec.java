@@ -82,9 +82,8 @@ public class BookColec{
         List<String>titulos = books.stream()
                 .map(Bookf::title)
                 .toList();
-        for (String titulo: titulos){
-            System.out.println(titulo);
-        }
+
+        titulos.stream().forEach(System.out::println);
     }
 
 
